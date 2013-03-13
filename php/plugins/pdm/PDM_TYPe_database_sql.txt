@@ -1,0 +1,3 @@
+﻿create table pdm(index2 INTEGER PRIMARY KEY,partno,title,type,upload,follow,time_to,time_from,memo,mod_date,version,status,url,upload_size);
+
+create table type(index2 INTEGER PRIMARY KEY,type,upload,follow,time_to,time_from,memo,mod_date,version,status,url,upload_size);

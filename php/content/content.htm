@@ -1,0 +1,391 @@
+<html><head><title>Content</title></head><body>
+<h1>Openshift 上的 CMSimple XH</h1>
+<p><a href="http://cmsimple.cycu.org/?Welcome_to_CMSimple:2013_Web_trends:Web_remote_site">Openshift 雲端服務平台上執行 CMSimple XH</a></p>
+<h2>Code Highlighter</h2>
+<p>頁面內容中的程式碼標示</p>
+<pre class="brush: python; fontsize: 100; first-line: 1; toolbar: false; ">import hashlib
+def md5Checksum(filePath):
+    fh = open(filePath, 'rb')
+    m = hashlib.md5()
+    while True:
+        data = fh.read(8192)
+        if not data:
+            break
+        m.update(data)
+    return m.hexdigest()
+print (md5Checksum("cmsimplexh1541.7z"))</pre>
+<p>程式碼標示使用方法:</p>
+<p>a. 使用者可以在編輯模式, 選擇右上方的"Insert code using Syntaxhighlighter" 功能後, 選擇語言並輸入程式碼後, 按 Insert 完成.</p>
+<p>b. 在頁面區選擇程式碼, 按住滑鼠右鍵帶出 SyntaxHL - edit 表單後, 將所選擇的程式區域放到 Syntaxhighlighter 中進行編輯.</p>
+<p> </p>
+<p> </p>
+<h1>延伸程式執行</h1>
+<p>PDM plugin 執行 (目前僅支援部份展示功能)</p>
+<p><span>{{{PLUGIN:pdmMain("paper.db");}}}</span></p>
+<p>CMSimple XH 延伸程式呼叫方式, 允許以類似函式呼叫的方式放在頁面任何地方, 除了可以與其他頁面內容統一配置外, 即使延伸程式發生語法錯誤, 也不會像舊版的 CMSimple 延伸程式會拖累整個系統, 造成無法連線的致命問題.</p>
+<p>{{{PLUGIN:mypluginMain();}}}</p>
+<p>換言之, CMSimple XH 的延伸程式呼叫方法, 相對較為靈活, 而與 CMSimple 延伸程式的相容性, 雖然並非 100%, 但是通常只要在 URL 呼叫連結的部分稍微修改就可以將舊版的延伸套件放到 CMSimple XH 中使用.</p>
+<h1>執行 bclock</h1>
+<p>以 Brython 編寫的 html5 clock</p>
+<p>{{{PLUGIN:bclockMain();}}}</p>
+<h1>執行 bconsole</h1>
+<p>以 Brython 編寫的線上 Python3 執行環境 (僅支援少數展示用功能):</p>
+<p>{{{PLUGIN:bconsoleMain();}}}</p>
+<h1>執行 cangorig</h1>
+<p>Cango Javascript 函式庫轉為 Brython 環境使用.</p>
+<p>{{{PLUGIN:cangorigMain();}}}</p>
+<h1>執行 Brython SVG</h1>
+<p>Brython 的 SVG 繪圖功能</p>
+<p>{{{PLUGIN:cangoMain();}}}</p>
+<h1>執行 cango2d1</h1>
+<p>Cango 2D 繪圖與滑鼠互動</p>
+<p>{{{PLUGIN:cango2d1Main();}}}</p>
+<p> </p>
+<h1>執行  bcanvas</h1>
+<p>Brython 的 html5 繪圖</p>
+<p>{{{PLUGIN:bcanvasMain();}}}</p>
+<h1>viewpart</h1>
+<p>Three.js 的 3D 零件展示, 目前僅支援 ASCII STL 檔案格式.</p>
+<p>{{{PLUGIN:viewpartMain("spikeball.stl");}}}</p>
+<h1>Cango 程式碼</h1>
+<p>這裡存放 Cango 延伸程式碼:</p>
+<p>基本 2D 繪圖</p>
+<pre class="brush: php; fontsize: 100; first-line: 1; toolbar: false; ">&lt;?php
+function cangoMain(){
+$output = &lt;&lt;&lt;EOF
+&lt;script src="jscript/brython/brython.js"&gt;&lt;/script&gt;
+&lt;script type="text/python"&gt;
+import Cango2v03
+import math
+g = Cango2v03.cango("cvs")
+xmin = 0
+xmax = 400
+ymin = 0
+ymax = 150
+g.setViewport()
+g.fillViewport("#aaaaba")
+#g.setWorldCoords(xmin, xmax, ymin, ymax)
+g.setWorldCoords(-30, 30, -30, 50)
+# path 會自動連接頭與尾
+繪圖路徑 = ["M", 0, 0, "L", 10, 0, "L", 10, 10, "L", 0, 10, "z"]
+# drawPath 用法: cgo.drawPath(data, x, y, scale, color, isotropic);
+# 執行 drawPath 會出現"小方塊"的圖像
+正方形 = g.drawPath(繪圖路徑, 0,0,1,'blue','iso')
+另一正方形 = 正方形.dup()
+另一正方形.rotate(30)
+# render 用法: cgo.render(obj, x, y, scl, degs);
+# 經過 dup(), duplicate, 表示已經 compile 圖形
+# 經過處理的圖形, 沒有 render 不會出現
+#g.render(另一正方形,0,0,1,0)
+另一正方形.rotate(30)
+#g.render(另一正方形,0,0,1,0)
+&lt;/script&gt;
+&lt;script&gt;
+window.onload=function(){
+brython();
+}
+&lt;/script&gt;
+&lt;canvas id="cvs" width="640" height="400"&gt;&lt;/canvas&gt;
+EOF;
+return $output;
+}</pre>
+<p> 旋轉按鈕</p>
+<pre class="brush: php; fontsize: 100; first-line: 1; toolbar: false; ">&lt;?php
+function cangoMain(){
+$output = &lt;&lt;&lt;EOF
+&lt;script src="jscript/brython/brython.js"&gt;&lt;/script&gt;
+&lt;script type="text/python"&gt;
+import Cango2v03
+import math
+g = Cango2v03.cango("cvs")
+xmin = 0
+xmax = 400
+ymin = 0
+ymax = 150
+g.setViewport()
+g.fillViewport("#aaaaba")
+#g.setWorldCoords(xmin, xmax, ymin, ymax)
+g.setWorldCoords(-20, 20, -20, 20)
+seg = ['M',0,0, 'L',1.3515,-0.6508, 'A',1,1,0,0,1,1.6824,-0.2624,
+               'A',0.32,0.32,0,0,0,1.6824,0.2624, 'A',1,1,0,0,1,1.3515,0.6508, 'z']
+小方塊 = g.drawPath(seg, 100, 350,2,'blue')
+小方塊.translate(-5,3)
+# 物件複製
+另一方塊 = 小方塊.dup()
+另一方塊.rotate(180)
+#小方塊.scale(5)
+g.animate([小方塊,另一方塊], [5,0], [3,0], [1,2], [0,90], 1000, 1000, 'loop')
+&lt;/script&gt;
+&lt;script&gt;
+window.onload=function(){
+brython();
+}
+&lt;/script&gt;
+&lt;canvas id="cvs" width="640" height="400"&gt;&lt;/canvas&gt;
+EOF;
+return $output;
+}</pre>
+<p> 曲線繪製與滑鼠事件</p>
+<pre class="brush: php; fontsize: 100; first-line: 1; toolbar: false; ">&lt;?php
+function cangoMain(){
+$output = &lt;&lt;&lt;EOF
+&lt;script src="jscript/brython/brython.js"&gt;&lt;/script&gt;
+  &lt;style type="text/css"&gt;
+     #cvs {
+      position: relative;
+      display: block;
+      margin: 0 auto;
+      background-color: wheat;
+    }
+  &lt;/style&gt;
+&lt;script type="text/python"&gt;
+import Cango2v03
+g = Cango2v03.cango("cvs")
+g.setViewport()
+g.fillViewport("lightyellow")
+g.setWorldCoords(0, 200, 0, 70)
+g.setPenColor("blue")
+x1 = 40
+y1 = 10
+cx1 = 90
+cy1 = 60
+x2 = 120
+y2 = 50
+cx2 = 130
+cy2 = 10
+cx3 = 150
+cy3 = 60
+x3 = 180
+y3 = 30
+grabOfsX = 0
+grabOfsY = 0
+def dragC1(mousePos):
+    global cx1,cy1
+    wPos = g.toWorldCoords(mousePos.x , mousePos.y)
+    cx1 = wPos.x
+    cy1 = wPos.y
+    drawCurve()
+def dragC2(mousePos):
+    global cx2,cy2
+    wPos = g.toWorldCoords(mousePos.x , mousePos.y)
+    cx2 = wPos.x
+    cy2 = wPos.y
+    drawCurve()
+def dragC3(mousePos):
+    global cx3,cy3
+    wPos = g.toWorldCoords(mousePos.x , mousePos.y)
+    cx3 = wPos.x
+    cy3 = wPos.y
+    drawCurve()
+def drawCurve():
+    g.clearCanvas()
+    g.setPenColor('blue')
+    data = ['M', x1, y1, 'Q', cx1, cy1, x2, y2]
+    g.drawPath(data)
+    g.setPenColor('green')
+    data = ['M', x2, y2, 'C', cx2, cy2, cx3, cy3, x3, y3]
+    g.drawPath(data)
+    g.setPenColor("rgba(0, 0, 0, 0.2)")
+    data = ['M', x1, y1, 'L', cx1, cy1, x2, y2]
+    g.drawPath(data)
+    data = ['M', x2, y2, 'L', cx2, cy2]
+    g.drawPath(data)
+    data = ['M', x3, y3, 'L', cx3, cy3]
+    g.drawPath(data)
+    g.render(c1, cx1, cy1)
+    g.render(c2, cx2, cy2)
+    g.render(c3, cx3, cy3)
+#dragC1 = null
+#dragC2 = null
+#dragC3 = null
+dragObj1 = Cango2v03.drag2d(g, null, dragC1, null)
+c1 = g.compileShape(Cango2v03.shapedefs.circle, 'red', 'red', 'iso', dragObj1)
+c1.scale(4)
+dragObj2 = Cango2v03.drag2d(g, null, dragC2, null)
+c2 = g.compileShape(Cango2v03.shapedefs.circle, 'red', 'red', 'iso', dragObj2)
+c2.scale(4)
+dragObj3 = Cango2v03.drag2d(g, null, dragC3, null)
+c3 = g.compileShape(Cango2v03.shapedefs.circle, 'red', 'red', 'iso', dragObj3)
+c3.scale(4)
+drawCurve()
+&lt;/script&gt;
+&lt;script&gt;
+window.onload=function(){
+brython();
+}
+&lt;/script&gt;
+&lt;canvas id="cvs" width="640" height="400"&gt;&lt;/canvas&gt;
+EOF;
+return $output;
+}</pre>
+<p> 字串與圖形結合旋轉</p>
+<pre class="brush: php; fontsize: 100; first-line: 1; toolbar: false; ">&lt;?php
+function cangoMain(){
+$output = &lt;&lt;&lt;EOF
+&lt;script src="jscript/brython/brython.js"&gt;&lt;/script&gt;
+  &lt;style type="text/css"&gt;
+     #cvs {
+      position: relative;
+      display: block;
+      margin: 0 auto;
+      background-color: wheat;
+    }
+  &lt;/style&gt;
+&lt;script type="text/python"&gt;
+import Cango2v03
+def sayHullo(cvsID):
+    g = Cango2v03.cango(cvsID)
+    # cgo.setViewport(lowerLeftX, lowerLeftY, width, height);
+    g.setViewport()
+    # cgo.setWorldCoords(leftX, rightX, bottomY, topY);
+    g.setWorldCoords(-10, 10, -5, 5)
+    hullo1 = g.drawText(" Brython Hullo World", 5, 3, 18, 5)
+    #sq = ['M',0,0, 'L',0,1, 1,1, 1,0, 'Z']
+    sq = ['M',0,0,'L',0,1,2,1,1,0,'Z']
+    '''
+    cgo.drawPath(data, x, y, scale, color, isotropic);
+    '''
+    小方塊 = g.drawPath(sq, 100, 350,2,'blue')
+    結合數列 = [hullo1,小方塊]
+    '''
+Cango.prototype.animate = function(obj, xValues, yValues, sclValues, rotValues, delay, dur, repeat)
+    '''
+    g.animate(結合數列, [5,0], [3,0], [1,2], [0,360], 1000, 1000, 'loop')
+&lt;/script&gt;
+&lt;script&gt;
+window.onload=function(){
+brython();
+sayHullo('cvs');
+}
+&lt;/script&gt;
+&lt;canvas id="cvs" width="640" height="400"&gt;&lt;/canvas&gt;
+EOF;
+return $output;
+}</pre>
+<p> Sin 函式繪圖</p>
+<pre class="brush: php; fontsize: 100; first-line: 1; toolbar: false; ">&lt;?php
+function cangoMain(){
+$output = &lt;&lt;&lt;EOF
+&lt;script src="jscript/brython/brython.js"&gt;&lt;/script&gt;
+  &lt;style type="text/css"&gt;
+     #cvs {
+      position: relative;
+      display: block;
+      margin: 0 auto;
+      background-color: wheat;
+    }
+  &lt;/style&gt;
+&lt;script type="text/python"&gt;
+import math
+import Cango2v03
+def sayHullo(cvsID):
+    g = Cango2v03.cango(cvsID)
+    xmin = 0
+    xmax = 15
+    ymin = -1
+    ymax = 1
+    g.setViewport(15, 3, 80, 60)
+    g.setWorldCoords(xmin, xmax, ymin, ymax)
+    g.setPenColor("black")
+    g.drawXYAxes(0, 0, xmin, xmax, ymin, ymax-0.1, "m", "ft", "X", "Y")
+    # 以下內建 drawAxes() 只繪出軸線, 沒有標值
+    #g.drawAxes(0, 0, xmin, xmax, ymin, ymax, "m", "ft", "X", "Y")
+    g.setPenColor("#ff0000")
+    # 紅色小平行線
+    g.drawPath(['M', 1, 1, 'L', 5, 1])
+    g.setPenColor("red")
+    data = []
+    # 畫筆 Move 到 (0,0)
+    data.append('M')
+    data.append(0)
+    data.append(0)
+    # 畫筆開始畫 Line, 隨後給定點的 x, y 座標
+    data.append('L')
+    度 = math.pi/180
+    for i in range(360):
+        data.append(i/30)
+        data.append(0.5*math.sin(5*i*度))
+    g.drawPath(data)
+&lt;/script&gt;
+&lt;script&gt;
+window.onload=function(){
+brython();
+sayHullo('cvs');
+}
+&lt;/script&gt;
+&lt;canvas id="cvs" width="640" height="400"&gt;&lt;/canvas&gt;
+EOF;
+return $output;
+}</pre>
+<p> 螺旋紋</p>
+<pre class="brush: php; fontsize: 100; first-line: 1; toolbar: false; ">&lt;?php
+function cangoMain(){
+$output = &lt;&lt;&lt;EOF
+&lt;script src="jscript/brython/brython.js"&gt;&lt;/script&gt;
+  &lt;style type="text/css"&gt;
+     #cvs {
+      position: relative;
+      display: block;
+      margin: 0 auto;
+      background-color: white;
+    }
+  &lt;/style&gt;
+&lt;script type="text/python"&gt;
+import math
+import Cango2v03
+def sayHullo(cvsID):
+    g = Cango2v03.cango(cvsID)
+    chamber2 = ['M', 2.16,88.86,
+'C',-53.67,136.97, -19.53,245.66, 77.53,270.72,\
+'C',121.88,266.09, 161.14,252.42, 197.44,231.33,\
+'C',90.83,250.17, 8.6,158.65, 41.92,86.36,\
+'C', 33.58,89, 16.47,90.73, 2.16,88.86, 'Z']
+    cObj = g.compileShape(chamber2, "brown", 'black')
+    scl = 0.1
+    for i in range(50):
+        g.render(cObj, 50, 30, scl, i*24.5)
+        scl /= 1.08
+&lt;/script&gt;
+&lt;script&gt;
+window.onload=function(){
+brython();
+sayHullo('cvs');
+}
+&lt;/script&gt;
+&lt;canvas id="cvs" width="640" height="400"&gt;&lt;/canvas&gt;
+EOF;
+return $output;
+}</pre>
+<p> </p>
+<p> </p>
+<h1>Axuploader</h1>
+<p>#CMSimple hide#</p>
+<p>#CMSimple $output.=axuploader_main();#</p>
+<h1>News01</h1>
+<h4>Newsbox News01</h4>
+<p>This box shows the content of the hidden page "News01".</p>
+<p>More information about newsboxes can be found here:</p>
+<p style="text-align: right;"><a href="http://www.cmsimple-xh.com/wiki/doku.php/manuals:users_manual:cmsimple:newsboxes">CMSimple_XH Wiki &raquo;</a></p>
+<hr>
+<p>Diese Box zeigt den Inhalt der versteckten Seite "News01".</p>
+<p>Mehr Informationen zum Thema Newsboxen gibt es hier:</p>
+<p style="text-align: right;"><a href="http://www.cmsimple-xh.de/dokuwiki/doku.php/anwenderdokumentation:cmsimple:newsboxen">CMSimple_XH Wiki &raquo;</a></p>
+<h1>News02</h1>
+<h4>Newsbox News02</h4>
+<p>This box shows the content of the hidden page "News02".</p>
+<p>More information about newsboxes can be found here:</p>
+<p style="text-align: right;"><a href="http://www.cmsimple-xh.com/wiki/doku.php/manuals:users_manual:cmsimple:newsboxes">CMSimple_XH Wiki &raquo;</a></p>
+<hr>
+<p>Diese Box zeigt den Inhalt der versteckten Seite "News02".</p>
+<p>Mehr Informationen zum Thema Newsboxen gibt es hier:</p>
+<p style="text-align: right;"><a href="http://www.cmsimple-xh.de/dokuwiki/doku.php/anwenderdokumentation:cmsimple:newsboxen">CMSimple_XH Wiki &raquo;</a></p>
+<h1>News03</h1>
+<h4>Newsbox News03</h4>
+<p>This box shows the content of the hidden page "News03".</p>
+<p>More information about newsboxes can be found here:</p>
+<p style="text-align: right;"><a href="http://www.cmsimple-xh.com/wiki/doku.php/manuals:users_manual:cmsimple:newsboxes">CMSimple_XH Wiki »</a></p>
+<hr>
+<p>Diese Box zeigt den Inhalt der versteckten Seite "News03".</p>
+<p>Mehr Informationen zum Thema Newsboxen gibt es hier:</p>
+<p style="text-align: right;"><a href="http://www.cmsimple-xh.de/dokuwiki/doku.php/anwenderdokumentation:cmsimple:newsboxen">CMSimple_XH Wiki »</a></p>
+</body></html>

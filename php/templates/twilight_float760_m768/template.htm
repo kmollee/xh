@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<?php echo head();?>
+<meta name="viewport" content="width=768, initial-scale=1.0, user-scalable=1">
+	<script type="text/javascript" src="jscript/syntaxhighlighter/shCore.js"></script>
+	<script type="text/javascript" src="jscript/syntaxhighlighter/shBrushJScript.js"></script>
+<script type="text/javascript" src="jscript/syntaxhighlighter/shBrushPhp.js"></script>
+<script type="text/javascript" src="jscript/syntaxhighlighter/shBrushPython.js"></script>
+<script type="text/javascript" src="jscript/syntaxhighlighter/shBrushCpp.js"></script>
+<script type="text/javascript" src="jscript/syntaxhighlighter/shBrushSql.js"></script>
+<script type="text/javascript" src="jscript/syntaxhighlighter/shBrushXml.js"></script>
+<script type="text/javascript" src="jscript/syntaxhighlighter/shBrushPlain.js"></script>
+<script type="text/javascript" src="jscript/syntaxhighlighter/shBrushCss.js"></script>
+	<link type="text/css" rel="stylesheet" href="jscript/syntaxhighlighter/css/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+<body id="tplge_body" <?php echo onload();?>>
+<!-- utf-8 check: äöü -->
+<div id="TOP"></div>
+
+
+<!-- HEADER -->
+
+<div id="tplge_header">
+<div class="tplge_inner">
+
+<h1><?php echo sitename();?></h1>
+
+<!-- locator -->
+
+	<div id="tplge_locator">
+<span style="font-weight: 700;"><?php echo $tx['locator']['text'];?>  </span><?php echo locator();?>
+	<div style="clear: both;"></div>
+	</div>
+	<div style="clear: both;"></div>
+
+</div>
+</div>
+
+
+<!-- ANFANG HAUPTCONTAINER / BEGIN MAIN CONTAINER -->
+
+<div id="tplge_main">
+
+
+<!-- ANFANG SEITE / BEGIN PAGE -->
+
+	<div id="tplge_page">
+
+
+<!-- ANFANG SIDEBAR NAVIGATION / BEGIN SIDEBAR NAVIGATION -->
+
+		<div id="tplge_sidebarNav">
+		<div class="tplge_inner">
+ 
+<?php echo searchbox();?>
+<?php echo toc();?>
+
+			<div id="tplge_subnav">
+<ul>
+<li><?php echo printlink();?></li>
+<li><?php echo sitemaplink();?></li>
+<li><?php echo mailformlink();?></li>
+</ul>
+<?php echo newsbox('Subnav');?>
+			</div>
+
+		<div style="clear: both;"></div>
+		<div style="clear: both;"></div>
+		</div>
+		<div style="clear: both;"></div>
+		</div>
+
+
+<!-- ANFANG INHALT / BEGIN CONTENT -->
+
+		<div id="tplge_content">
+		<div class="tplge_inner">
+
+<?php echo editmenu();?>
+<?php echo content();?>
+<?php // echo submenu();?>
+
+
+<!-- vor-hoch-zurueck / prev-top-next -->
+
+			<div id="tplge_prevnext">
+			<div class="tplge_inner">
+<span><?php echo previouspage();?></span>|
+<span><?php echo top();?></span>|
+<span><?php echo nextpage();?></span>
+
+			<div style="clear: both;"></div>
+			</div>
+			<div style="clear: both;"></div>
+			</div>
+			<div style="clear: both;"></div>
+
+
+<!-- ENDE INHALT / END CONTENT -->
+
+		</div>
+		<div style="clear: both;"></div>
+		</div>
+		<div style="clear: both;"></div>
+
+
+<!-- ENDE SEITE / END PAGE -->
+
+	</div>
+	<div style="clear: right;"></div>
+
+<!-- ANFANG FLOATENDE BOXEN / ANFANG FLOAT BOXES -->
+
+
+
+	<div style="clear: both;"></div>
+
+
+<!-- END MAIN CONTAINER -->
+
+</div>
+
+
+<!-- FOOTER LINKS -->
+
+<div id="tplge_notes">
+
+<p>
+<span>Powered by <a href="http://www.cmsimple-xh.de/" target="_blank">CMSimple_XH</a></span>|
+
+<!-- Dieser Link darf nicht geloescht werden, wenn Sie dieses Template kostenlos nutzen - http://www.ge-webdesign.de -->
+<span>Template: <a href="http://www.ge-webdesign.de/" target="_blank">ge-webdesign.de</a></span>|
+
+<?php 
+if($adm && !$edit)
+{
+echo '<span><a href="http://validator.w3.org/check?uri=referer">html</a></span>|
+<span><a href="http://jigsaw.w3.org/css-validator/check/referer">css</a></span>|';
+}
+?>
+
+<span><?php echo loginlink();?></span>
+</p>
+
+<div style="clear: both;"></div>
+</div>
+
+<div style="clear: both;"> </div>
+</body>
+</html>

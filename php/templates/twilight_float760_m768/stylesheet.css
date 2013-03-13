@@ -1,0 +1,160 @@
+/* RESET BROWSERSTYLE */
+* {padding: 0; margin: 0;}
+
+
+/* GLOBAL STYLES */
+h1, h2, h3 {font-family: century gothic, verdana, sans-serif; color: #234; font-size: 24px; line-height: 1.6em; font-weight: 300; letter-spacing: 1px; border-bottom: 0px solid #999; padding: 0; margin: 0 0 16px 0;}
+h4 {font-family: century gothic, verdana, sans-serif; color: #234; font-size: 20px; line-height: 1.4em; font-weight: 300; letter-spacing: 1px; margin: 15px 0 10px 0;}
+h5 {font-family: century gothic, verdana, sans-serif; color: #234; font-size: 18px; line-height: 1.4em; font-weight: 300; letter-spacing: 1px; margin: 15px 0 10px 0;}
+h6 {font-family: century gothic, verdana, sans-serif; color: #234; font-size: 16px; line-height: 1.4em; font-weight: 300; letter-spacing: 1px; margin: 15px 0 10px 0;}
+p {margin: 10px 0;}
+ol {margin: 6px 0;}
+ol li {line-height: 1.0em; border: 0; padding: 3px 0; margin: 0 0 0 22px;}
+ul {list-style-image: url(images/inhlist.gif); margin: 6px 0;}
+ul li {line-height: 1.0em; border: 0; padding: 3px 0; margin: 0 0 0 17px;}
+hr {clear: both; height: 1px; color: #666; background-color: #666; border: 0; margin: 12px 0;}
+
+
+/* CONTENT CLASSES */
+.tplge_left_border {float: left; border: 5px solid #fff; margin: 0 20px 10px 0;}
+.tplge_left_noborder {float: left; border: 0; margin: 0 20px 10px 0;}
+.tplge_right_border {float: right; border: 5px solid #fff; margin: 0 0 10px 20px;}
+.tplge_right_noborder {float: right; border: 0; margin: 0 0 10px 20px;}
+.tplge_border {border: 5px solid #fff;}
+.tplge_noborder {border: 0;}
+
+.tplge_code {background: #eed; font-family: 'courier new', monospace; border: 1px solid #997; padding: 20px;}
+.tplge_box01 {background: #ccb; border: 3px solid #fff; padding: 16px;}
+.tplge_legal {padding: 6px 0;}
+
+.XXXXXXXXXXXXXXXXXX {} /* Marker for styles menu tinymce */
+
+
+/* LINKS GLOBAL */
+a:link {color: #258; text-decoration: none;}
+a:visited {color: #258; text-decoration: none;}
+a:hover {color: #c60; text-decoration: none;}
+a:active {color: #c60; text-decoration: none;}
+a:focus {color: #c60; text-decoration: none;}
+
+
+/* BODY */
+body {background: #e0e0d6; font-family: arial, verdana, sans-serif; color: #444; font-size: 15px; line-height: 1.3em;}
+body#tplge_body {background: #111;}
+#top {}
+
+
+/* GLOBAL */
+.tplge_inner {border: 0px solid #999; margin: 20px 0 0 20px;}
+
+
+/* HEADER */
+div#tplge_header {height: 140px; background: #111 url(images/bgheader.jpg) right top no-repeat; border-top: 1px solid; border-bottom: 0px solid #fff;}
+
+#tplge_header h1 {font-family: century gothic, verdana, serif; color: #ddc; font-size: 24px; line-height: 1.2em; font-weight: 100; letter-spacing: 1px;}
+
+
+/* locator */
+div#tplge_locator {clear: both; font-family: arial, sans-serif; color: #999; padding: 46px 0 0 0;}
+
+div#tplge_locator a:link {color: #ccc; text-decoration: none;}
+div#tplge_locator a:visited {color: #ccc; text-decoration: none;}
+div#tplge_locator a:hover {color: #f90; text-decoration: none;}
+div#tplge_locator a:active {color: #c60; text-decoration: none;}
+div#tplge_locator a:focus {color: #c60; text-decoration: none;}
+
+
+/* MAIN CONTAINER */
+div#tplge_main {background: #d0d0c6 url(images/bgmain.jpg); border-top: 5px solid #998; border-bottom: 5px solid #998; padding: 10px 0 20px 0;}
+
+
+/* SEITE / PAGE */
+div#tplge_page {width: 100%; float: left;}
+
+
+/* SIDEBAR NAVIGATION */
+div#tplge_sidebarNav {width: 20%; float: left;}
+div#tplge_sidebarNav div.tplge_inner {margin-top: 16px;}
+
+
+/* searchbox */
+div#searchbox {text-align: left;}
+div#searchbox .text {width: 110px; background: #998; color: #fff; font-family: arial, sans-serif; font-size: 14px; border: 1px solid #fff; padding: 2px 3px;}
+div#searchbox .submit {background: #222; color: #fff; border: 1px solid #fff; padding: 1px 6px;}
+
+
+/* toc */
+#tplge_sidebarNav li {list-style-type: none; list-style-image: none;}
+
+#tplge_sidebarNav ul.menulevel1 {color: #940; border: 0; padding: 12px 10px 12px 0; margin: 0;}
+#tplge_sidebarNav ul.menulevel1 li {font-size: 16px; line-height: 1.2em; text-align: left; font-weight: 700; border-bottom: 1px solid #666; padding: 10px 0 5px 0; margin: 0;}
+
+#tplge_sidebarNav ul ul.menulevel2 {border: 0; padding: 8px 0 4px 0; margin: 0;}
+#tplge_sidebarNav ul ul.menulevel2 li {font-size: 15px; line-height: 1.2em; font-weight: 300; text-align: left; border: 0; padding: 0px 0 5px 1px; margin: 0;}
+
+#tplge_sidebarNav ul ul ul.menulevel3 {margin: 5px 0 0 0;}
+#tplge_sidebarNav ul ul ul.menulevel3 li {line-height: 1.2em; font-size: 14px; text-align: left; border: 0; padding: 4px 0 2px 16px; margin: 0;}
+
+div#tplge_sidebarNav a:link {color: #222; text-decoration: none;}
+div#tplge_sidebarNav a:visited {color: #222; text-decoration: none;}
+div#tplge_sidebarNav a:hover {color: #c60; text-decoration: none;}
+div#tplge_sidebarNav a:active {color: #c60; text-decoration: none;}
+div#tplge_sidebarNav a:focus {color: #c60; text-decoration: none;}
+
+#tplge_sidebarNav div#tplge_subnav ul {padding: 0; margin: 20px 0;}
+#tplge_sidebarNav div#tplge_subnav li {padding: 4px 0; margin: 2px 0;}
+#tplge_sidebarNav p.tplge_lastupdate {font-size: 12px; color: #cca; text-align: right; padding: 0 12px 0 16px;}
+#tplge_sidebarNav .tplge_logo {background: #eee; float: right; border: 10px solid #ccc; padding: 0; margin: 0;}
+
+#tplge_sidebarNav ul.menulevel1 li.sdocs {}
+#tplge_sidebarNavul.menulevel1 li.sdoc {}
+#tplge_sidebarNav ul.menulevel2 li.sdocs {}
+#tplge_sidebarNav ul.menulevel2 li.sdoc {}
+
+
+/* INHALT / CONTENT */
+#tplge_content {width: 69%; float: left;}
+#tplge_content div.tplge_inner {background: #e0e0d6; border: 2px solid #f6f6f6; padding: 16px 24px; margin-top: 16px; margin-bottom: 16px;}
+
+
+/* vor-hoch-zurueck / prev-top-next */
+#tplge_prevnext {clear: both; float: left; width: 100%;}
+#tplge_prevnext div.tplge_inner {text-align: center; border: 0; border-top: 1px solid #666; padding: 8px 0 0 0; margin: 12px 0 0 0;}
+#tplge_prevnext div.tplge_inner span {padding: 0 6px 0 2px;}
+
+
+/* NEWSBOXEN / NEWSBOXES */
+
+div.tplge_news {width: 264px; float: left; line-height: 1.2em;}
+div.tplge_news div.tplge_inner {background: #e0e0d6; border: 2px solid #f6f6f6; padding: 0 12px 10px 12px; margin-top: 16px; margin-bottom: 6px;}
+
+
+div.tplge_newsin h4, div.tplge_newsin2 h4, div.tplge_newsin3 h4 {color: #620; font-weight: 300; line-height: 1.2em; border-bottom: 3px solid #666359; padding: 6px 0 4px 0; margin: 0;}
+div.tplge_newsin h5 {font-weight: 300; letter-spacing: 1px; margin: 10px 0 0 0;}
+div.tplge_newsin h6 {font-weight: 300; letter-spacing: 1px; margin: 10px 0 0 0;}
+
+
+/* FUSSLINKS / FOOTER LINKS */
+#tplge_notes {background: url(images/bgfooter.jpg) right top no-repeat; color: #666; font-family: arial, sans-serif; font-size: 14px; text-align: right; border-top: 0px solid #fff; padding: 1px 30px 280px 30px;}
+#tplge_notes span {padding: 0 6px 0 2px;}
+
+#tplge_notes a:link {color: #aaa; text-decoration: none;}
+#tplge_notes a:visited {color: #aaa; text-decoration: none;}
+#tplge_notes a:hover {color: #f90; text-decoration: none;}
+#tplge_notes a:active {color: #fff; text-decoration: none;}
+#tplge_notes a:focus {color: #fff; text-decoration: none;}
+
+
+/* SONSTIGES / THE REST */
+#passwd {border: 1px solid #999;}
+.text {background: #998; color: #fff; font-family: arial, sans-serif; font-size: 14px; border: 1px solid #fff; padding: 2px 3px;}
+.file {border: 1px solid #999;}
+p.code {background: #eed; font-family: 'courier new', serif; border: 1px solid #997; padding: 20px;}
+p.date {color: #093; text-align: right; line-height: 1.2em;}
+.scroll {background: #eec; border: 1px solid #997; padding: 10px; overflow: scroll;}
+.retrieve {background: #ffffff; background-image:none; border: 0;}
+table.edit {background: #eee; font-size: 14px; line-height: 1.2em; border: 1px solid #999; margin: 1px 0;}
+table.edit td {border: 0; padding: 3px;}
+#tplge_content textarea {width: 90%; background: #998; color: #fff; font-family: arial, sans-serif; border: 1px solid #fff; padding: 4px 8px!important; margin: 0 0 10px 0;}
+#cmsimple_mailform textarea {width: 90%; background: #998; color: #fff; font-family: arial, sans-serif; border: 1px solid #fff; padding: 10px; margin: 0 0 10px 0;}
+.hinweis {line-height: 1.2em; padding: 2px 10px;}
